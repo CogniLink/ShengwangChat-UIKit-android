@@ -40,7 +40,7 @@ suspend fun ChatUIKitUserProfileProvider.fetchUsersBySuspend(userIds: List<Strin
  * Get user info by cache or sync method provided by user.
  */
 fun ChatUIKitUserProfileProvider.getSyncUser(userId: String?): ChatUIKitProfile? {
-    var user = ChatUIKitClient.getCache().getUser(userId)
+    var user = ChatUIKitClient.getCache().getUser(userId) ?: ChatUIKitClient.getCache().getMessageUserInfo(userId)
     if (user == null) {
         user = getUser(userId)
         if (user != null && !userId.isNullOrEmpty()) {
