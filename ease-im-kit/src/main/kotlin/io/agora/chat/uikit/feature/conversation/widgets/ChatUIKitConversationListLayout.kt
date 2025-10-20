@@ -311,6 +311,9 @@ class ChatUIKitConversationListLayout @JvmOverloads constructor(
         listViewModel?.loadData()
     }
 
+    fun fetchConvGroupInfo(visibleList: List<ChatUIKitConversation>) {
+        listViewModel?.fetchConvGroupInfo(visibleList)
+    }
     fun fetchConvUserInfo(visibleList:List<ChatUIKitConversation>){
         listViewModel?.fetchConvUserInfo(visibleList)
     }
