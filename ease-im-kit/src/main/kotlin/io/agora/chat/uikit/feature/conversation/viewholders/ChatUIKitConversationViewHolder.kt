@@ -88,7 +88,7 @@ class ChatUIKitConversationViewHolder(
                             placeholder(placeholderRes)
                             error(placeholderRes)
                         }
-                        if (profile.name.isNullOrEmpty()) {
+                        if (!profile.name.isNullOrEmpty()) {
                             name.text = profile.name
                         }
                     }
