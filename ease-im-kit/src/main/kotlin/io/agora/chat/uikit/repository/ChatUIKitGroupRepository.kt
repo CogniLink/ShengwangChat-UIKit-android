@@ -116,7 +116,12 @@ class ChatUIKitGroupRepository(
         var cursor: String? = null
         do {
             val result = groupManager.fetchChatGroupMembers(groupId,cursor,LIMIT)
-            val data = result.data.map {
+            var data = result.data.map {
+                ChatUIKitProfile.getGroupMember(groupId, it)?.toUser() ?: ChatUIKitUser(it)
+            }
+            val fetchUsers = data.filter { user -> user.nickname.isNullOrEmpty() || user.nickname == user.userId }.map { user -> user.userId }
+            ChatUIKitClient.getUserProvider()?.fetchUsersBySuspend(fetchUsers)
+            data = result.data.map {
                 ChatUIKitProfile.getGroupMember(groupId, it)?.toUser() ?: ChatUIKitUser(it)
             }
             cursor = result.cursor
